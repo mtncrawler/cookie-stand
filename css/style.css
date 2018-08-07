@@ -1,5 +1,6 @@
 body {
-    background-color: salmon;
+    background-color: #fa8072d6;
+    margin: 20px;
 }
 
 h1 {
@@ -23,7 +24,18 @@ li {
 }
 
 td, th {
+    font-size: 20px;
     text-align: center;
     border: 1px solid black;
-    padding: 6px;
+    padding: 11px;
 }
+
+table.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#header-row {
+    font-weight: bold;
+}
+
