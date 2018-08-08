@@ -112,9 +112,19 @@ function calculateStaffRequirements() {
   }
 }
 
+// // //take user entered new store data and input it into the tables
+var formElt = document.getElementById('newStoreForm');
+formElt.addEventListener('submit', function(e) {
+  e.preventDefault();
+  console.log('Form submitted!');
+  var storeCreatedFromForm = new Store(e.target.name.value, Number(e.target.minHourlyCust.value), Number(e.target.maxHourlyCust.value), Number(e.target.avgCookiesSold.value), []);
+  storeCreatedFromForm.displayStats();
+});
+
+
 
 //constructor function to create store object; followed by methods added to object Store
-var Store = function(location, simulatedCookiesSold, minHourlyCustomers, maxHourlyCustomers, avgCookiesPerSale) {
+var Store = function(location, minHourlyCustomers, maxHourlyCustomers, avgCookiesPerSale, simulatedCookiesSold) {
   this.location = location;
   this.simulatedCookiesSold = simulatedCookiesSold;
   this.minHourlyCustomers = minHourlyCustomers;
@@ -127,11 +137,11 @@ Store.prototype.displayStats = displayHourlyCookieSales;
 Store.prototype.requiredStaff = calculateStaffRequirements;
 
 //create instances of Store for every location
-var firstAndPike = new Store('1st and Pine', [], 23, 65, 6.3);
-var seaTac = new Store('SeaTac Airport', [], 3, 24, 1.2);
-var seattleCenter = new Store('Seattle Center', [], 11, 38, 3.7);
-var capitolHill = new Store('Capitol Hill', [], 20, 38, 2.3);
-var alki = new Store('Alki', [], 2, 16, 4.6);
+var firstAndPike = new Store('1st and Pine', 23, 65, 6.3, []);
+var seaTac = new Store('SeaTac Airport', 3, 24, 1.2, []);
+var seattleCenter = new Store('Seattle Center', 11, 38, 3.7, []);
+var capitolHill = new Store('Capitol Hill', 20, 38, 2.3, []);
+var alki = new Store('Alki', 2, 16, 4.6, []);
 
 function main() {
   fillHeader();
@@ -152,3 +162,4 @@ function main() {
 }
 
 main();
+

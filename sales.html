@@ -35,6 +35,23 @@
           <tr id = "footer2"></tr>
         </tfoot>
       </table>
+    </section>
+    <section>
+      <br>
+      <br>
+      <form id="newStoreForm">
+        <div>
+         <fieldset>
+           <label for="name">Enter store name:</label><input id="name" name="name" type="text" /><br>
+           <label for="minHourlyCust">Enter the minimum customers per hour:</label><input id="minHourlyCust" name="minHourlyCust" type="number" min="1" max="999"/><br>
+          <label for="maxHourlyCust">Enter the maximum customers per hour:</label><input id="maxHourlyCust" name="maxHourlyCust" type="number" min="1" max="999"/><br>
+          <label for="avgCookiesSold">Enter the average cookies sold per customer:</label><input id="avgCookiesSold" name="avgCookiesSold" type="number" min="1" max="999" step = "0.1"/><br>
+          <input type="submit" value="Add New Store" />
+        </fieldset>
+        </div>
+      </form>
+    </section>
+  </section>
   <script src="js/app.js"></script>
 </body>
 </html>
