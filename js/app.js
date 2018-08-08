@@ -77,6 +77,41 @@ function fillHeader() {
   }
 }
 
+//create second table to display number of Cookie Tossers needed at each store every hour - cookie tosser handles 20 customers/hour; minimum 2 cookie tossers
+function fillHeader2() {
+  var headerRow = document.getElementById('header-row2');
+  var emptyHeader = document.createElement('td');
+  emptyHeader.textContent = '';
+  headerRow.appendChild(emptyHeader);
+
+  for (var i = 0; i < hours.length-1; i++) {
+    var timeHeader = document.createElement('td');
+    timeHeader.textContent = hours[i];
+    headerRow.appendChild(timeHeader);
+  }
+}
+
+function calculateStaffRequirements() {
+  var tbody = document.getElementById('main-content2');
+  var storeInfo = document.createElement('tr');
+  var storeLocation = document.createElement('td');
+
+  storeLocation.textContent = this.location;
+  storeInfo.appendChild(storeLocation);
+  tbody.appendChild(storeInfo);
+
+  for (var i = 0; i < this.simulatedCookiesSold.length-1; i++) {
+    var staff = document.createElement('td');
+    if (this.simulatedCookiesSold[i] < 40) {
+      staff.textContent = 2;
+    } else {
+      staff.textContent = Math.ceil([(this.simulatedCookiesSold[i])/20]);
+    }
+    storeInfo.appendChild(staff);
+    tbody.appendChild(storeInfo);
+  }
+}
+
 
 //constructor function to create store object; followed by methods added to object Store
 var Store = function(location, simulatedCookiesSold, minHourlyCustomers, maxHourlyCustomers, avgCookiesPerSale) {
@@ -89,6 +124,7 @@ var Store = function(location, simulatedCookiesSold, minHourlyCustomers, maxHour
 Store.prototype.customersPerHour = getRandomIntInclusive;
 Store.prototype.projectedSales = estimatedCookiesPerHour;
 Store.prototype.displayStats = displayHourlyCookieSales;
+Store.prototype.requiredStaff = calculateStaffRequirements;
 
 //create instances of Store for every location
 var firstAndPike = new Store('1st and Pine', [], 23, 65, 6.3);
@@ -99,12 +135,20 @@ var alki = new Store('Alki', [], 2, 16, 4.6);
 
 function main() {
   fillHeader();
+  fillHeader2();
   firstAndPike.displayStats();
   seaTac.displayStats();
   seattleCenter.displayStats();
   capitolHill.displayStats();
   alki.displayStats();
+
   calcAndDisplayHourlyTotal();
+
+  firstAndPike.requiredStaff();
+  seaTac.requiredStaff();
+  seattleCenter.requiredStaff();
+  capitolHill.requiredStaff();
+  alki.requiredStaff();
 }
 
 main();
