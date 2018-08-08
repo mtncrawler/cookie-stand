@@ -1,13 +1,32 @@
+@font-face {
+    font-family: 'crushed';
+    src: url('https://fonts.googleapis.com/css?family=Crushed');}
+
 body {
-    background-color: salmon;
+    background-color: #fa8072d6;
+    margin: 20px;
 }
 
+#title-header {
+    font-family: 'crushed';
+    font-size: 90px;
+    letter-spacing: 15px;
+    display: inline-block;
+}
+
+img {
+    display: inline-block;
+    margin-left: 7%;
+    margin-right: auto;
+    height: 100px;
+    width: auto;
+}
 h1 {
     font-size: 50px;
     text-align: center;
     margin: 3%;
-    font-family: fantasy;
     font-weight: 700;
+    font-family: fantasy;
 }
 
 h2 {
@@ -22,3 +41,22 @@ li {
     margin: 0 50px 18px;
 }
 
+td, th {
+    font-size: 20px;
+    text-align: center;
+    border: 1px solid black;
+    padding: 11px;
+}
+
+table.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#header-row {
+    font-weight: bold;
+}
+
+#header-row2 {
+    font-weight: bold;
+}
