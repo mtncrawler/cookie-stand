@@ -4,6 +4,8 @@ console.log('js loaded');
 //every hour every store is open for business
 var hours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm', 'Daily Location Total'];
 
+//create array to fill with estimate cookie sales per hour; used to calculate hourly totals for footer
+var cookiesSold = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 //create function to generate pseudo random number between min and max hourly customers inclusive
 function getRandomIntInclusive() {
@@ -25,12 +27,10 @@ function estimatedCookiesPerHour() {
     return accumulator + currentValue;
   }, 0);
   this.simulatedCookiesSold.push(cookiesTotal);
-
   return this.simulatedCookiesSold;
 }
 
-//create function to display location estimated cookie sales per hour on table; each store on new row
-
+//create function to display each location's estimated cookie sales per hour on table; each store on new row
 function displayHourlyCookieSales() {
   this.projectedSales();
   var tbody = document.getElementById('main-content');
@@ -45,22 +45,28 @@ function displayHourlyCookieSales() {
     var hourlySales = document.createElement('td');
     hourlySales.textContent = this.simulatedCookiesSold[i];
     storeInfo.appendChild(hourlySales);
+    cookiesSold[i] = cookiesSold[i] + this.simulatedCookiesSold[i];
   }
+  this.requiredStaff();
 }
 
 //create function to sum hourly cookie sale totals of all stores and add them to the footer of table
-
 function calcAndDisplayHourlyTotal() {
-  var footer = document.getElementById('footer');
+  var table1 = document.getElementById('firstTable');
+  table1.deleteTFoot();
+  var footer = document.createElement('tfoot');
+  var footRow = document.createElement('tr');
   var firstColumnFooter = document.createElement('td');
   firstColumnFooter.textContent = 'Total';
-  footer.appendChild(firstColumnFooter);
+  footRow.appendChild(firstColumnFooter);
 
   for(var i = 0; i < 15; i++) {
     var totalsFooter = document.createElement('td');
-    totalsFooter.textContent = (firstAndPike.simulatedCookiesSold[i] + seaTac.simulatedCookiesSold[i] + seattleCenter.simulatedCookiesSold[i] + capitolHill.simulatedCookiesSold[i] + alki.simulatedCookiesSold[i]);
-    footer.appendChild(totalsFooter);
+    totalsFooter.textContent = (cookiesSold[i]);
+    footRow.appendChild(totalsFooter);
   }
+  footer.appendChild(footRow);
+  table1.appendChild(footer);
 }
 
 //create function to populate header of table with store hours array
@@ -112,16 +118,15 @@ function calculateStaffRequirements() {
   }
 }
 
-// // //take user entered new store data and input it into the tables
+//take user entered new store data and input it into the tables
 var formElt = document.getElementById('newStoreForm');
 formElt.addEventListener('submit', function(e) {
   e.preventDefault();
   console.log('Form submitted!');
   var storeCreatedFromForm = new Store(e.target.name.value, Number(e.target.minHourlyCust.value), Number(e.target.maxHourlyCust.value), Number(e.target.avgCookiesSold.value), []);
   storeCreatedFromForm.displayStats();
+  calcAndDisplayHourlyTotal();
 });
-
-
 
 //constructor function to create store object; followed by methods added to object Store
 var Store = function(location, minHourlyCustomers, maxHourlyCustomers, avgCookiesPerSale, simulatedCookiesSold) {
@@ -136,6 +141,7 @@ Store.prototype.projectedSales = estimatedCookiesPerHour;
 Store.prototype.displayStats = displayHourlyCookieSales;
 Store.prototype.requiredStaff = calculateStaffRequirements;
 
+
 //create instances of Store for every location
 var firstAndPike = new Store('1st and Pine', 23, 65, 6.3, []);
 var seaTac = new Store('SeaTac Airport', 3, 24, 1.2, []);
@@ -143,6 +149,7 @@ var seattleCenter = new Store('Seattle Center', 11, 38, 3.7, []);
 var capitolHill = new Store('Capitol Hill', 20, 38, 2.3, []);
 var alki = new Store('Alki', 2, 16, 4.6, []);
 
+//executes code!
 function main() {
   fillHeader();
   fillHeader2();
@@ -153,12 +160,6 @@ function main() {
   alki.displayStats();
 
   calcAndDisplayHourlyTotal();
-
-  firstAndPike.requiredStaff();
-  seaTac.requiredStaff();
-  seattleCenter.requiredStaff();
-  capitolHill.requiredStaff();
-  alki.requiredStaff();
 }
 
 main();
