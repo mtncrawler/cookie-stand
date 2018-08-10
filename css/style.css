@@ -1,10 +1,131 @@
-@font-face {
-    font-family: 'crushed';
-    src: url('https://fonts.googleapis.com/css?family=Crushed');}
 
 body {
+    background-color:lightsalmon;
+
+}
+
+header {
+    text-align: center;
+    background-color:white;
+}
+
+/* images */
+img#salmon{
+    height: 70px;
+    width: auto;
+    margin-left: 3%;
+}
+
+img#chinook {
+    height: 84px;
+    width: auto;
+}
+img#family {
+    height: 329px;
+    width: auto;
+    margin-left: 15%;
+    display: inline-block; 
+}
+
+img#cookie {
+    height: 127px;
+    width: auto;
+    display: block; 
+}
+img#cutter {
+    height: 200px;
+    width: auto;
+    display: block; 
+}
+
+img#shirt {
+    height: 143px;
+    width: auto;
+    float:left;
+    margin-left: 3%;
+}
+
+img#fish {
+    height: 143px;
+    width: auto;
+    float:right;
+    margin-right: 3%;
+}
+
+p#about-family {
+ 
+    text-align: center;
+    display: inline-block;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 25px;
+    margin-left: 81px;
+}
+
+p#moreTalk {
+    text-align: center;
+    margin-left:15%;
+    display: inline-block;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 25px;
+    padding-top: 60px;
+}
+
+div.main {
+    width: 40%;
+    display: inline-block;
+    margin:10px;
+}
+
+div.footerRow {
+    padding: 40px;
+}
+
+p#contact {
+    display: inline-block;
+    font-size: 25px;
+    line-height: 150%;
+    margin-left: 27px;
+    font-family: 'crushed';
+}
+
+body.sales {
     background-color: #fa8072d6;
     margin: 20px;
+}
+
+section {
+    text-align:center;
+    padding-top: 4%;
+}
+
+
+
+span.twopics {
+    display:block;
+    margin-left: 298px;
+}
+
+/* store locations */
+.stores li {
+    color: #003dffc4;
+    text-align: center;
+    font-family: 'crushed';
+    display: inline-block;
+    margin: 0 30px;
+    font-size: 23px;
+    letter-spacing: 3px;
+}
+
+.stores {
+    text-align: center;
+    margin: 0;
+    /* display: inline-block; */
+}
+
+footer {
+    margin-top: 50px;
+    background-color:white;
+    padding: 1%;
 }
 
 #title-header {
@@ -14,26 +135,24 @@ body {
     display: inline-block;
 }
 
-img {
-    display: inline-block;
-    margin-left: 7%;
-    margin-right: auto;
-    height: 100px;
-    width: auto;
-}
 h1 {
     font-size: 50px;
     text-align: center;
     margin: 3%;
     font-weight: 700;
-    font-family: fantasy;
+    font-family: 'crushed';
 }
 
 h2 {
-    font-size: 25px;
-    margin: 2%;
-    font-weight: bold;
+    font-family: 'crushed';
+    font-size: 35px;
+    text-align: center;
+    margin: 1%;
+    font-weight: bolder;
     text-transform: uppercase;
+    margin-top: 6%;
+    margin-bottom: 3%;
+    letter-spacing: 7px;
 }
 
 li {
